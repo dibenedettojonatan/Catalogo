@@ -1,29 +1,52 @@
 @extends('layouts.plantilla')
 
     @section('contenido')
-<main class="container">
-    <h1>Alta de un nuevo usuario</h1>
+    <main class="container">
+        <h1>Panel de administración de usuarios</h1>
 
-    <div class="alert alert-secondary p-4 col-8 mx-auto">
-        <form action="agregarUsuario.php" method="post">
-            Nombre: <br>
-            <input type="text" name="usuNombre" class="form-control" required>
-            <br>
-            Apellido: <br>
-            <input type="text" name="usuApellido" class="form-control" required>
-            <br>
-            Email: <br>
-            <input type="email" name="usuEmail" class="form-control" required>
-            <br>
-            Contraseña: <br>
-            <input type="password" name="usuPass" class="form-control" required>
-            <br>
-            <button class="btn btn-dark mr-3 px-4">Agregar</button>
-            <a href="adminUsuarios" class="btn btn-outline-secondary">
-                Volver a panel
-            </a>
-        </form>
-    </div>
+        <a href="admin.php" class="btn btn-outline-secondary m-3">Volver a principal</a>
 
-</main>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th colspan="2">
+                        <a href="formAgregarUsuario" class="btn btn-dark">
+                            Agregar
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+@foreach($usuarios as $usuario)
+    
+
+
+                <tr>
+                    <td>{{$usuario->idUsuario}} </td>
+                    <td>{{$usuario->usuNombre}} </td>
+                    <td>{{$usuario->usuApellido}} </td>
+                    <td>{{$usuario->usuEmail}}</td>
+                    <td>
+                        <a href="" class="btn btn-outline-secondary">
+                            Modificar
+                        </a>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-outline-secondary">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+@endforeach
+            </tbody>
+        </table>
+
+        <a href="admin" class="btn btn-outline-secondary m-3">Volver a principal</a>
+
+    </main>
 @endsection

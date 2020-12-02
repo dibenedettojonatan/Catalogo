@@ -44,6 +44,8 @@ Route::get('/adminCategorias', function()
     $categorias = DB::select('SELECT `idCategoria`, `catNombre` FROM `categorias` WHERE 1');
     return view('adminCategorias', ['categorias'=>$categorias]);
 });
+
+############# PRODUCTOS #############
 Route::get('/adminProductos', function()
 {
     /*$productos = DB::statement('SELECT  
@@ -58,9 +60,18 @@ Route::get('/adminProductos', function()
                                     prdStock,
                                     prdImagen);*/
     $productos = DB::table('productos as p')  
-                         ->join('marcas as m', 'p.idMarca', '=', 'm.idMarca', )
+                         ->join('marcas as m', 'p.idMarca', '=', 'm.idMarca')
                          ->join('categorias as c', 'p.idCategoria', '=', 'c.idCategoria')
                          ->get();         
 
     return view('adminProductos', ['productos'=>$productos]);
+});
+
+############## USUARIOS ############
+Route::get('/adminUsuarios', function()
+{
+    $usuarios = DB::table('usuarios')->get();
+
+    return view('adminUsuarios', ['usuarios'=>$usuarios]);
+
 });
