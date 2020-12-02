@@ -19,36 +19,48 @@ Route::get('/', function () {
 });
 Route::get('/inicio', function()
 {
+
+
 return view('inicio');
+
+
 });
 Route::get('/admin', function()
 {
     return view('admin');
 
 });
-###########     MARCAS #############
+
+#############   MARCAS #############
 Route::get('/adminMarcas', function()
 {
-    $marcas = DB::table('marcas')->get();
- return view('adminMarcas', ['marcas'=>$marcas]);
+    $marcas = DB::select('SELECT idMarca, mkNombre FROM marcas WHERE 1');
+    return view('adminMarcas', ['marcas'=>$marcas]);
 });
 
-###########     CATEGORIAS #############
+############## CATEGORIAS ############
 Route::get('/adminCategorias', function()
 {
-    $categorias = DB::table('categorias')->get();
+    $categorias = DB::select('SELECT `idCategoria`, `catNombre` FROM `categorias` WHERE 1');
     return view('adminCategorias', ['categorias'=>$categorias]);
 });
-
-###########     PRODUCTOS #############
 Route::get('/adminProductos', function()
 {
-    $productos = DB::table('productos')->get();
-    return view('adminProductos', ['productos'=>$productos]);
-});
+    /*$productos = DB::statement('SELECT  
+                                    idProducto, 
+                                    prdNombre, 
+                                    prdPrecio, 
+                                    p.idMarca, 
+                                    mkNombre, 
+                                    p.idCategoria, 
+                                    catNombre, 
+                                    prdPresentacion, 
+                                    prdStock,
+                                    prdImagen);*/
+    $productos = DB::table('productos as p')  
+                         ->join('marcas as m', 'p.idMarca', '=', 'm.idMarca', )
+                         ->join('categorias as c', 'p.idCategoria', '=', 'c.idCategoria')
+                         ->get();         
 
-###########     USUARIOS #############
-Route::get('/adminUsuarios', function()
-{
-    return view('adminUsuarios');
+    return view('adminProductos', ['productos'=>$productos]);
 });

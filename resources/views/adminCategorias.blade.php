@@ -4,7 +4,7 @@
 <main class="container">
     <h1>Panel de administración de categorías</h1>
 
-    <a href="admin.php" class="btn btn-outline-secondary m-2">
+    <a href="admin" class="btn btn-outline-secondary m-2">
         Volver a principal
     </a>
 

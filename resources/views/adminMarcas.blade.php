@@ -19,6 +19,7 @@
             </tr>
         </thead>
         <tbody>
+
 @foreach($marcas as $marca)
     
 

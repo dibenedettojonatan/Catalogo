@@ -1,6 +1,6 @@
 @extends('layouts.plantilla')
 
-    @section('contenido')
+@section('contenido')
 <main class="container">
     <h1>Dashboard - Administración</h1>
 
